@@ -1,5 +1,8 @@
 <template>
+
     <div id="mapTexas"></div>
+
+
 </template>
 
 <script>
@@ -21,8 +24,12 @@
     let maskingSentinelApr16;
 
 
+
     export default {
         name: "Map",
+        // components: {
+        //     DialogDrag
+        // },
         data() {
             return {
                 map: [],
@@ -337,6 +344,7 @@
     #mapTexas{
         width: 100%;
         height: inherit;
+
     }
 
 </style>

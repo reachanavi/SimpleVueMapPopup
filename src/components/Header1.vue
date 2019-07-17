@@ -63,36 +63,63 @@
       </v-toolbar>
       <v-content>
          <v-container fluid fill-height style="margin:0">
+            <v-layout row wrap>
+               <v-flex>
+                  <v-card><Button></Button></v-card>
+               </v-flex>
+               <Dialog style="display:none" id="dialogBox"></Dialog>
+               <Map/>
 
-            <Map />
+
+            </v-layout>
 
          </v-container>
       </v-content>
    </v-app>
+
+
 </template>
 
 <script>
+
+
    import Map from './Map.vue';
+   import Button from './Button.vue';
+   import Dialog from './Dialog.vue';
+
 
    export default {
       name:"Header1",
-      components: {
-         //MenuMainTools,
-         //MenuSecondaryTools,
-         //MenuScreenTools,
+      components:{
+         Button,
+         Dialog,
          Map
-         //Footer1
       },
       created() {
-         this.$eventHub.$on('logged-in', this.getCurrentUser)
+         this.$eventHub.$on('logged-in', this.getCurrentUser);
+         this.$eventHub.$on('openBox', this.makeAppear);
       },
       data: () => ({
          drawer: null
       }),
       props: {
          source: String
+      },
+      methods:{
+         makeAppear: function() {
+            let x = document.getElementById("dialogBox");
+            if (x.style.display === "none") {
+               x.style.display = "block";
+            } else {
+               x.style.display = "none";
+            }
+         }
       }
    }
+
+
+
+
 </script>
 <style>
    .container{
@@ -126,4 +153,6 @@
          z-index:5000;
       }
    }
+
+
 </style>
